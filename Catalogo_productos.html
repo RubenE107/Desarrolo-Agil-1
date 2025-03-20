@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 250px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .donation-icon {
+            color: green;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        
+        <div></div>
+        <div>Catálogo de Productos   </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Filtros</h3>
+            <label>Carrera:</label>
+            <select>
+                <option>Todo</option>
+                <option>Matematicas</option>
+                <option>Quimica</option>
+                <option>Mecatronica</option>
+                <option>Computacion</option>
+                <option>Fisica</option>
+            </select>
+            <br><br>
+            <label>Precio:</label>
+            <input type="range" min="0" max="500">
+            <br><br>
+            <label>Estado:</label>
+            <select>
+                <option>Nuevo</option>
+                <option>Usado</option>
+            </select>
+        </div>
+        <div class="content">
+            <input type="text" class="search-bar" placeholder="Buscar productos">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="th.jpeg" alt="Producto">
+                    <h4>Libro de fisica aplicada</h4>
+                    <!--p>Precio: $100</-p-->
+                    <p>Carrera: Fisica</p>
+                    <button onclick="viewDetails()">Ver detalles</button>
+                    <span class="donation-icon">✔ Donación</span>
+                </div>
+                <div class="product-card">
+                    <img src="th.jpeg" alt="Producto">
+                    <h4>Calculadora Científica</h4>
+                    <p>Precio: $50</p>
+                    <p>Carrera: Matematicas</p>
+                    <button onclick="viewDetails()">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function viewDetails() {
+            alert("Abriendo detalles del producto...");
+        }
+    </script>
+</body>
+</html>

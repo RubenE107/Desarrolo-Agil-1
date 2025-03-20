@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 350px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registro</h2>
+        <input type="text" id="name" placeholder="Nombre completo">
+        <input type="email" id="email" placeholder="Correo">
+        <p class="error" id="emailError">Solo correos universitarios permitidos</p>
+        <input type="password" id="password" placeholder="Contraseña">
+        <p>Debe tener mínimo 8 caracteres y al menos un símbolo.</p>
+        <input type="text" id="phone" placeholder="Número de teléfono">
+        <button onclick="validateForm()">Crear cuenta</button>
+        <p><a href="#">¿Ya tienes cuenta? Inicia sesión</a></p>
+    </div>
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const phone = document.getElementById("phone").value;
+            const studentId = document.getElementById("studentId").value;
+            const emailError = document.getElementById("emailError");
+            const universityRegex = /^[a-zA-Z0-9._%+-]+@university\.edu$/;
+
+            if (!name || !email || !password || !phone || !studentId) {
+                alert("Todos los campos son obligatorios.");
+                return;
+            }
+            
+            if (!universityRegex.test(email)) {
+                emailError.style.display = "block";
+                return;
+            } else {
+                emailError.style.display = "none";
+            }
+
+            if (password.length >= 8 && /[!@#$%^&*]/.test(password)) {
+                alert("Hemos enviado un enlace de activación a tu correo.");
+            } else {
+                alert("La contraseña no cumple con los requisitos.");
+            }
+        }
+    </script>
+</body>
+</html>
