@@ -1,0 +1,72 @@
+@import '~material-design-icons/iconfont/material-icons.css';
+
+.card-image{
+    padding: 15px;
+}
+
+.card:hover{
+    box-shadow: black 5px ;
+}
+
+.loginContainer {
+    padding: 20px;
+}
+
+.loginTitulo {
+    width: 100%;
+    font-weight: bold;
+    color: black;
+}
+
+.loginTitulo:hover {
+    color: rgb(22, 141, 205);
+    transition: all 0.5s ease 0s;
+}
+
+.customInput {
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #eeeeee;
+    border-radius: 100px;
+    padding: 14px !important;
+}
+
+.customInput input {
+    position: relative;
+    padding-left: 30px;
+    border-style: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.customInput i {
+    position: absolute;
+    color: darkgray;
+    z-index: 999;
+    transition: all 2s ease 0s;
+}
+
+.customInput:hover i {
+    color: #993E19 !important;
+    transition: all 2s ease 0s;
+}
+
+.divOlvide {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav{
+    background-color: rgb(68, 127, 209);
+    margin-bottom: 10px;
+}
+
+.a2{
+    color: rgb(93, 157, 52);
+}
+
+.a2:hover{
+    color: rgb(131, 238, 64);
+    transition: all 0.5s ease 0s;
+}
