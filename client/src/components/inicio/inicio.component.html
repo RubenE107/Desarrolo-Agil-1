@@ -1,5 +1,5 @@
 <nav class="nav">
-    <div class="nav-wrapper">
+    <div class="nav-wrapper carreras">
         <a href="http://localhost:4200/home/inicio" class="brand-logo center">Todas las carreras</a>
     </div>
 </nav>
@@ -11,34 +11,26 @@
         <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <div class="col s10">
-        <div class="col s6" *ngFor="let producto of productos">
-            <div class="card horizontal small z-depth-3">
+        <div class="col s12 m4" *ngFor="let producto of productos">
+            <div class="card-item">
                 <div class="card-image">
-                    <a href="http://localhost:4200/home/inicio"><img src="../../assets/images/{{producto.producto_id}}.jpg" alt="Imagen del producto" /></a>
-                    
+                    <a href="http://localhost:4200/home/inicio"><img class="card-img" src="../../assets/images/{{producto.producto_id}}.jpg" alt="Imagen del producto" /></a>
                 </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <a href="http://localhost:4200/home/inicio">
-                            <h6 class="loginTitulo">
-                                {{producto.producto_descripcion}}
-                            </h6>
-                        </a>
-                        
-                        <h4>
-                            ${{producto.producto_precio}}
-                        </h4>
-                        <h6>
-                            Disponibles: {{producto.producto_existencia}}
-                        </h6>
-                        <h6>
-                            Vendedor: <a class="a2" href="http://localhost:4200/home/inicio">{{producto.usuario_nombre}}</a>
-                        </h6>
-                    </div>
-                    <div class="card-action">
-                        <a href="http://localhost:4200/home/inicio">Comprar</a>
-                    </div>
-                </div>
+                <a href="http://localhost:4200/home/inicio">
+                    <h2 class="loginTitulo">
+                        {{producto.producto_descripcion}}
+                    </h2>
+                </a>
+                <h2>
+                    ${{producto.producto_precio}}
+                </h2>
+                <h2>
+                    Disponibles: {{producto.producto_existencia}}
+                </h2>
+                <h2>
+                    Vendedor: <a class="a2" href="http://localhost:4200/home/inicio">{{producto.usuario_nombre}}</a>
+                </h2>
+                <button class="button" >Comprar</button>
             </div>
         </div>
     </div>
