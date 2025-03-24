@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IntegerType } from 'mongodb';
 import { Producto } from 'src/models/productoModel';
 import { ProductosService } from 'src/services/productos.service';
 import { CarrerasService } from 'src/services/carreras.service';
