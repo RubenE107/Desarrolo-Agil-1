@@ -14,6 +14,7 @@ class ProductosRoutes{
         this.router.put('/actualizar/:id',productosController.update);
         this.router.delete('/eliminar/:id',productosController.delete);
         this.router.get('/carrera/:carrera_id', productosController.listByCareer);
+        this.router.post('/filtrar', productosController.listByFilters);
         }
 }
 

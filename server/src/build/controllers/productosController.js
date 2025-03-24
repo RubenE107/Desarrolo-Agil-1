@@ -74,5 +74,33 @@ class ProductosController {
             }
         });
     }
+    listByFilters(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { filtro, valor } = req.body; //filtros por estado, precio, existencia
+            let consulta = `SELECT * FROM productos WHERE producto_${filtro}`;
+            try {
+                if (filtro === 'estado') {
+                    consulta += ` = '${valor}'`;
+                    const respuesta = yield database_1.default.query(consulta);
+                    res.json(respuesta);
+                }
+                else if (filtro === 'precio') {
+                    consulta += `>= ${valor}`;
+                    const respuesta = yield database_1.default.query(consulta);
+                    res.json(respuesta);
+                }
+                else if (filtro === 'existencia') {
+                    consulta += `>= ${valor}`;
+                    console.log(consulta);
+                    const respuesta = yield database_1.default.query(consulta);
+                    res.json(respuesta);
+                }
+            }
+            catch (e) {
+                console.log(e);
+                res.json(false);
+            }
+        });
+    }
 }
 exports.productosController = new ProductosController();

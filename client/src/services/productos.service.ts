@@ -16,4 +16,7 @@ export class ProductosService {
   list() {
     return this.http.get(`${environment.API_URI}/api/productos`);
   }
+  filter(data : any) {
+    return this.http.post(`${environment.API_URI}/api/productos/filtrar`, data);
+  }
 }

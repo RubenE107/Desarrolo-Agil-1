@@ -62,6 +62,37 @@ class ProductosController
             res.json(false);
         }
     }
+
+    public async listByFilters(req: Request, res: Response) : Promise<void> {//filtros por estado, precio, existencia Ya funciona
+        const { filtro,valor } = req.body;//filtros por estado, precio, existencia
+        let consulta = `SELECT * FROM productos WHERE producto_${filtro}`;
+        try{
+        if (filtro === 'estado')
+        {
+            consulta+= ` = '${valor}'`;
+            const respuesta = await pool.query(consulta);
+            res.json(respuesta);
+        }
+        else if (filtro === 'precio')
+        {
+            consulta+= `>= ${valor}`;
+            const respuesta = await pool.query(consulta);
+            res.json(respuesta);
+        }
+        else if(filtro === 'existencia')
+        {
+            consulta+= `>= ${valor}`;
+            console.log(consulta);
+            const respuesta = await pool.query(consulta);
+            res.json(respuesta);
+        }
+    }
+    catch (e)
+    {
+        console.log(e);
+        res.json(false);
+    }
+}
 }
 
 export const productosController = new ProductosController();
