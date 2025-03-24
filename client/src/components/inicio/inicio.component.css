@@ -144,3 +144,10 @@ img{
     box-shadow: 0 0px 20px #555;
     border-radius: 25px;
   }
+
+  .opcion{
+    width: 70%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
+  }

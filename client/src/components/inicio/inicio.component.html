@@ -6,10 +6,35 @@
 
 <div class="row">
     <div class="col s2 card loginContainer">
-        <h6>Filtros de búsqueda</h6>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <h3>Filtros de búsqueda</h3>
+        <h4>Estado del producto</h4>
+        <form >
+            <p>
+              <label>
+                <input type="checkbox"[(ngModel)]="estado" (click)="onSubmit(1)"  id="redCheckbox"/>
+                <span>Nuevo</span>
+              </label>
+            </p>
+            <p>
+                <label>
+                  <input type="checkbox"  [(ngModel)]="estado" (click)="onSubmit(2)" id="redCheckbox1"/>
+                  <span>Usado</span>
+                </label>
+              </p>
+          </form>
+        <!-- Filtro de Rango de Precios -->
+        <h4 for="price">Precio a partir de:</h4>
+        <input type="number" id="quantity"  step="1">
+        <!-- <input type="range" id="price" min="0" max="1000" step="50">
+        <span id="price-value">0</span> Mostrar el valor del rango -->
+
+        <h4>Numero de unidades</h4>
+        <input type="number" id="quantity1" min="0" max="1000" step="1">
+
+        <button class="opcion" (click)="enviarFiltro()">Buscar</button>
+        <button class="opcion" (click)="limpiarFiltros()">Limpiar filtros</button>
     </div>
+    
     <div class="col s10">
         <div class="col s12 m4" *ngFor="let producto of productos">
             <div class="card-item">

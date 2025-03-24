@@ -76,29 +76,32 @@ class ProductosController {
     }
     listByFilters(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { filtro, valor } = req.body; //filtros por estado, precio, existencia
-            let consulta = `SELECT * FROM productos WHERE producto_${filtro}`;
-            try {
-                if (filtro === 'estado') {
-                    consulta += ` = '${valor}'`;
-                    const respuesta = yield database_1.default.query(consulta);
-                    res.json(respuesta);
-                }
-                else if (filtro === 'precio') {
-                    consulta += `>= ${valor}`;
-                    const respuesta = yield database_1.default.query(consulta);
-                    res.json(respuesta);
-                }
-                else if (filtro === 'existencia') {
-                    consulta += `>= ${valor}`;
-                    console.log(consulta);
-                    const respuesta = yield database_1.default.query(consulta);
-                    res.json(respuesta);
-                }
+            const { valor1, valor2, valor3 } = req.body; //filtros por estado, precio, existencia
+            let var1 = valor1 == "nuevo" ? 1 : 2;
+            let query = 'SELECT producto_id, producto_descripcion, producto_precio, producto_existencia, producto_estado, carrera_nombre, usuario_nombre, usuario_apellidos FROM productos_usuarios LEFT JOIN usuarios ON id_usuario = usuarios.usuario_id LEFT JOIN productos ON id_producto = productos.producto_id LEFT JOIN carreras ON productos.id_carrera_p = carreras.carrera_id where ';
+            console.log(req.body);
+            if (valor2 > 0) {
+                query += `producto_precio >= ${valor2} `;
             }
-            catch (e) {
-                console.log(e);
-                res.json(false);
+            if (valor3 > 0) {
+                if (valor2 > 0) {
+                    query += 'AND ';
+                }
+                query += `producto_existencia >= ${valor3} `;
+            }
+            if (valor1 != "") {
+                if (valor2 > 0 || valor3 >= 1) {
+                    query += 'AND ';
+                }
+                query += `producto_estado = ${var1} `;
+            }
+            console.log(query);
+            try {
+                const respuesta = yield database_1.default.query(query);
+                res.json(respuesta);
+            }
+            catch (_a) {
+                res.json(false); //No se selecciono ningun filtro
             }
         });
     }
