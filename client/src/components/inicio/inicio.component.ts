@@ -39,9 +39,31 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  mostrarMensaje(event: Event, opcion: string) {
+  seleccionarCarrera(event: Event, carrera_id: number) {
     event.preventDefault();
-    console.log(`Has seleccionado: ${opcion}`);
-  }
+    console.log(`Has seleccionado: ${carrera_id}`);
 
+    if (carrera_id == 0) {
+      this.productosService.list().subscribe((resProductos: any) =>
+        {
+          console.log(resProductos);
+          if(resProductos.length == 0){
+            console.log("No hay productos.");
+          }
+          else{
+            this.productos = resProductos;
+          }
+        });
+    } else {
+      this.productosService.listByCareer(carrera_id).subscribe((resProductos: any) => {
+        console.log(resProductos);
+        if(resProductos.length == 0){
+          console.log("No hay productos para esta carrera.");
+        }
+        else{
+          this.productos = resProductos;
+        }
+      });
+    }
+  }
 }
