@@ -49,6 +49,19 @@ class ProductosController
         const resp = await pool.query("DELETE FROM productos WHERE producto_id = ?", [id]);
         res.json(resp);
     }
+
+    public async listByCareer(req: Request, res: Response) : Promise<void> {
+        const { carrera_id } = req.params;
+        try
+        {
+            const respuesta = await pool.query('SELECT * from productos WHERE id_carrera_p = ?', [carrera_id]);
+            res.json( respuesta );
+        }
+        catch
+        {
+            res.json(false);
+        }
+    }
 }
 
 export const productosController = new ProductosController();
