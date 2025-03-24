@@ -12,6 +12,7 @@ import { CarrerasService } from 'src/services/carreras.service';
 export class InicioComponent implements OnInit {
   productos : Producto[] = [];
   carreras : any[] = [];
+  mostrarModal: boolean = false;
   constructor(
     private productosService : ProductosService,
     private carrerasService: CarrerasService
@@ -23,6 +24,7 @@ export class InicioComponent implements OnInit {
         console.log(resProductos);
         if(resProductos.length == 0){
           console.log("No hay productos.");
+          this.mostrarModal = true;
         }
         else{
           this.productos = resProductos;
@@ -49,6 +51,7 @@ export class InicioComponent implements OnInit {
           console.log(resProductos);
           if(resProductos.length == 0){
             console.log("No hay productos.");
+            this.mostrarModal = true;
           }
           else{
             this.productos = resProductos;
@@ -59,11 +62,16 @@ export class InicioComponent implements OnInit {
         console.log(resProductos);
         if(resProductos.length == 0){
           console.log("No hay productos para esta carrera.");
+          this.mostrarModal = true;
         }
         else{
           this.productos = resProductos;
         }
       });
     }
+  }
+
+  cerrarModal() {
+    this.mostrarModal = false;
   }
 }

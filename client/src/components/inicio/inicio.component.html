@@ -1,8 +1,10 @@
 <nav class="nav">
     <div class="nav-wrapper carreras">
-      <a href="http://localhost:4200/home/inicio" class="brand-logo center" (click)="seleccionarCarrera($event, 0)">Todas las carreras</a>
-      <div class="carreras-list">
-        <a *ngFor="let carrera of carreras" href="http://localhost:4200/home/inicio" class="brand-logo" (click)="seleccionarCarrera($event, carrera.carrera_id)">
+        <div class="principal">
+            <a href="http://localhost:4200/home/inicio" class="brand-logo" (click)="seleccionarCarrera($event, 0)">Todas las carreras</a>
+        </div>
+      <div class="carreras-list" *ngFor="let carrera of carreras">
+        <a href="http://localhost:4200/home/inicio" class="brand-logo" (click)="seleccionarCarrera($event, carrera.carrera_id)">
           {{ carrera.carrera_nombre }}
         </a>
       </div>
@@ -51,3 +53,14 @@
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </div>
+
+<div *ngIf="mostrarModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 class="modal-title">Mensaje</h3>
+        <p class="modal-text">No hay productos disponibles para esta categoría.</p>
+        <button (click)="cerrarModal()" class="modal-close-btn">Cerrar</button>
+    </div>
+</div>
+
+
+
