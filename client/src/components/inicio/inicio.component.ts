@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/models/productoModel';
 import { ProductosService } from 'src/services/productos.service';
+import { CarrerasService } from 'src/services/carreras.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,7 +11,11 @@ import { ProductosService } from 'src/services/productos.service';
 
 export class InicioComponent implements OnInit {
   productos : Producto[] = [];
-  constructor(private productosService : ProductosService) {}
+  carreras : any[] = [];
+  constructor(
+    private productosService : ProductosService,
+    private carrerasService: CarrerasService
+  ) {}
 
   ngOnInit(): void {
     this.productosService.list().subscribe((resProductos: any) =>
@@ -23,6 +28,20 @@ export class InicioComponent implements OnInit {
           this.productos = resProductos;
         }
       });
+    this.carrerasService.list().subscribe((resCarreras: any) => {    
+      console.log(resCarreras);
+      if(resCarreras.length == 0){
+        console.log("No hay carreras.");
+      }
+      else{
+        this.carreras = resCarreras;
+      }
+    });
+  }
+
+  mostrarMensaje(event: Event, opcion: string) {
+    event.preventDefault();
+    console.log(`Has seleccionado: ${opcion}`);
   }
 
 }
