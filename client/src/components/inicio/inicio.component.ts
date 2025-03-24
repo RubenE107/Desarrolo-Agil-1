@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IntegerType } from 'mongodb';
 import { Producto } from 'src/models/productoModel';
 import { ProductosService } from 'src/services/productos.service';
+import { CarrerasService } from 'src/services/carreras.service';
 
 @Component({
   selector: 'app-inicio',
@@ -13,7 +14,12 @@ export class InicioComponent implements OnInit {
   estado:string="";  // Valor inicial, desmarcado
 
   productos : Producto[] = [];
-  constructor(private productosService : ProductosService) {}
+  carreras : any[] = [];
+  mostrarModal: boolean = false;
+  constructor(
+    private productosService : ProductosService,
+    private carrerasService: CarrerasService
+  ) {}
 
   ngOnInit(): void {
     this.productosService.list().subscribe((resProductos: any) =>
@@ -21,14 +27,27 @@ export class InicioComponent implements OnInit {
         console.log(resProductos);
         if(resProductos.length == 0){
           console.log("No hay productos.");
+          this.mostrarModal = true;
         }
         else{
           this.productos = resProductos;
         }
       });
-  document.getElementById("quantity")?.setAttribute("value", "0");
-  document.getElementById("quantity1")?.setAttribute("value", "1");
-  }
+      this.carrerasService.list().subscribe((resCarreras: any) => {    
+        console.log(resCarreras);
+        if(resCarreras.length == 0){
+          console.log("No hay carreras.");
+        }
+        else{
+          this.carreras = resCarreras;
+        }
+      });
+      document.getElementById("quantity")?.setAttribute("value", "0");
+      document.getElementById("quantity1")?.setAttribute("value", "1");
+    }
+
+
+  
 
   onSubmit(numero : number){//enviar filtro al servidor{
     console.log(numero);
@@ -61,7 +80,8 @@ export class InicioComponent implements OnInit {
       });
     }
 
-  enviarFiltro(){//enviar filtro al servidor
+  enviarFiltro()
+  {//enviar filtro al servidor
     let valorEstado=this.estado;//si esta llena se selecciono un estado,si no va vacio
     let valorPrecio = (document.getElementById("quantity") as HTMLInputElement).value;
     console.log(valorPrecio);
@@ -76,6 +96,12 @@ export class InicioComponent implements OnInit {
     {
       console.log(resProductos);
       if(resProductos.length == 0){
+        //Mostar modal de que no hay productos
+
+        console.log("No hay productos.");
+        this
+        this.mostrarModal = true;
+          
         this.productosService.list().subscribe((resProductos: any) =>
           {
               this.productos = resProductos;
@@ -88,5 +114,49 @@ export class InicioComponent implements OnInit {
       }
     });
 
+
+    this.carrerasService.list().subscribe((resCarreras: any) => {    
+      console.log(resCarreras);
+      if(resCarreras.length == 0){
+        console.log("No hay carreras.");
+      }
+      else{
+        this.carreras = resCarreras;
+      }
+    });
+  }
+
+  seleccionarCarrera(event: Event, carrera_id: number) {
+    event.preventDefault();
+    console.log(`Has seleccionado: ${carrera_id}`);
+
+    if (carrera_id == 0) {
+      this.productosService.list().subscribe((resProductos: any) =>
+        {
+          console.log(resProductos);
+          if(resProductos.length == 0){
+            console.log("No hay productos.");
+            this.mostrarModal = true;
+          }
+          else{
+            this.productos = resProductos;
+          }
+        });
+    } else {
+      this.productosService.listByCareer(carrera_id).subscribe((resProductos: any) => {
+        console.log(resProductos);
+        if(resProductos.length == 0){
+          console.log("No hay productos para esta carrera.");
+          this.mostrarModal = true;
+        }
+        else{
+          this.productos = resProductos;
+        }
+      });
+    }
+  }
+
+  cerrarModal() {
+    this.mostrarModal = false;
   }
 }

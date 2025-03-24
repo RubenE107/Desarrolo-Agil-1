@@ -16,7 +16,13 @@ export class ProductosService {
   list() {
     return this.http.get(`${environment.API_URI}/api/productos`);
   }
+
   filter(data : any) {
     return this.http.post(`${environment.API_URI}/api/productos/filtrar`, data);
+
+  }
+  listByCareer(carrera_id : any) {
+    return this.http.get(`${environment.API_URI}/api/productos/carrera/${carrera_id}`);
+
   }
 }
