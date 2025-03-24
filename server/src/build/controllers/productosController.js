@@ -62,5 +62,17 @@ class ProductosController {
             res.json(resp);
         });
     }
+    listByCareer(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { carrera_id } = req.params;
+            try {
+                const respuesta = yield database_1.default.query('SELECT * from productos WHERE id_carrera_p = ?', [carrera_id]);
+                res.json(respuesta);
+            }
+            catch (_a) {
+                res.json(false);
+            }
+        });
+    }
 }
 exports.productosController = new ProductosController();

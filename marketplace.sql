@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `carreras`
 --
 
+CREATE DATABASE IF NOT EXISTS `marketplace` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci;
+USE `marketplace`;
+
 DROP TABLE IF EXISTS `carreras`;
 CREATE TABLE IF NOT EXISTS `carreras` (
   `carrera_id` int NOT NULL AUTO_INCREMENT,
