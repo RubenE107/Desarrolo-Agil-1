@@ -1,17 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { InicioComponent } from './inicio.component';
 import { ProductosService } from 'src/services/productos.service';
+import { CarrerasService } from 'src/services/carreras.service';
 import { of } from 'rxjs';
-import { Producto } from 'src/models/productoModel';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { Producto } from 'src/models/productoModel';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('InicioComponent', () => {
+fdescribe('InicioComponent', () => {
   let component: InicioComponent;
   let fixture: ComponentFixture<InicioComponent>;
-  let mockProductosService: jasmine.SpyObj<ProductosService>;
+  //let mockProductosService: jasmine.SpyObj<ProductosService>;
 
-  // Datos simulados que retornará el servicio
+  let productosService: ProductosService;
+  let carrerasService: CarrerasService;
+  let debugElement: DebugElement;;
   const productosMock: Producto[] = [
     {
       producto_id: 1,
@@ -140,7 +145,124 @@ describe('InicioComponent', () => {
     }
   ]
 
+  beforeEach(async () => {
+   await TestBed.configureTestingModule({
+     declarations: [ InicioComponent ],
+     imports: [ HttpClientTestingModule, HttpClientModule ],
+     providers: [ ProductosService, CarrerasService,]
+   })
+   .compileComponents();
+   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(InicioComponent);
+    component = fixture.componentInstance;
+    productosService = TestBed.inject(ProductosService);
+    carrerasService = TestBed.inject(CarrerasService);
+    debugElement = fixture.debugElement;
+    fixture.detectChanges();
+  });
+
+//   it('Debería filtrar los productos por los filtros', () => {
+//     // Configura el mock del servicio con productos
+//     const estadoProducto='nuevo';
+
+//     // ProductosService.filter.and.returnValue(of(productosNuevosMock)); // Mock de productos usados
+//     // ProductosService.list.and.returnValue(of(productosMock)); // Mock de todos los productos
+//     spyOn(productosService, 'filter').and.returnValue(of(productosUsadosMock));
+//     component.ngOnInit();
+//     fixture.detectChanges();
+//     // Configura el TestBed
+//     // TestBed.configureTestingModule({
+//     //   imports: [HttpClientModule],
+//     //   declarations: [InicioComponent],
+//     //   providers: [
+//     //     { provide: ProductosService, useValue: mockProductosService }
+//     //   ]
+//     // }).compileComponents();
+  
+//     // fixture = TestBed.createComponent(InicioComponent);
+//     // component = fixture.componentInstance;
+//     // fixture.detectChanges(); // Dispara la detección de cambios para inicializar los elementos
+    
+//     // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
+//     const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
+//     const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
+
+//     inputPrecio.value = '200';  
+//     inputExistencia.value = '1';  
+//         // Dispara un evento de input para que Angular reconozca el cambio
+//     inputPrecio.dispatchEvent(new Event('input'));
+//     inputExistencia.dispatchEvent(new Event('input'));
+
+//     component.estado = 'nuevo'; // Filtrar productos usados
+
+//     component.enviarFiltro();
+
+//     expect(mockProductosService.filter).toHaveBeenCalledWith({
+//       valor1: 'nuevo',  // El estado es 'usado'
+//       valor2: '200',    // El valor del precio simulado
+//       valor3: '2'       // El valor de existencia simulado
+//     });
+//     // Verificar que los productos devueltos sean los productos usados mockeados
+// expect(component.productos).toEqual(productosNuevosMock);});// Verificar que los productos devueltos sean los productos usados mockeados
+
+
+  it('should display carreras in <a> tags', () => {
+    const mockCarreras = [
+      { carrera_id: 1, carrera_nombre: 'Carrera 1' },
+      { carrera_id: 2, carrera_nombre: 'Carrera 2' }
+    ];
+
+    spyOn(carrerasService, 'list').and.returnValue(of(mockCarreras));
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    const carreraElements = debugElement.queryAll(By.css('.carreras-list a'));
+    expect(carreraElements.length).toBe(mockCarreras.length);
+    carreraElements.forEach((el, index) => {
+      expect(el.nativeElement.textContent).toContain(mockCarreras[index].carrera_nombre);
+    });
+  });
+
+  it('should filter products by career when a career is selected', () => {
+    const mockProductos = [
+      { producto_id: 1, producto_descripcion: 'Producto 1', producto_precio: 100, producto_existencia: 10, producto_estado: 1, carrera_nombre: 'Carrera 1', usuario_nombre: 'Usuario 1', usuario_apellidos: 'Apellido 1' },
+      { producto_id: 2, producto_descripcion: 'Producto 2', producto_precio: 200, producto_existencia: 20, producto_estado: 1, carrera_nombre: 'Carrera 2', usuario_nombre: 'Usuario 2', usuario_apellidos: 'Apellido 2' }
+    ];
+
+    spyOn(productosService, 'listByCareer').and.returnValue(of(mockProductos));
+    component.seleccionarCarrera(new Event('click'), 1);
+    fixture.detectChanges();
+
+    expect(component.productos).toEqual(mockProductos);
+  });
+
+  it('should show all products when "Todas las carreras" is selected', () => {
+    const mockProductos = [
+      { producto_id: 1, producto_descripcion: 'Producto 1', producto_precio: 100, producto_existencia: 10, producto_estado: 1, carrera_nombre: 'Carrera 1', usuario_nombre: 'Usuario 1', usuario_apellidos: 'Apellido 1' },
+      { producto_id: 2, producto_descripcion: 'Producto 2', producto_precio: 200, producto_existencia: 20, producto_estado: 1, carrera_nombre: 'Carrera 2', usuario_nombre: 'Usuario 2', usuario_apellidos: 'Apellido 2' }
+    ];
+
+    spyOn(productosService, 'list').and.returnValue(of(mockProductos));
+    component.seleccionarCarrera(new Event('click'), 0);
+    fixture.detectChanges();
+
+    expect(component.productos).toEqual(mockProductos);
+  });
+
+});
+
+
+
+
+
+
+
+
+  // it('Debería crear el componente', () => {
+  //   expect(component).toBeTruthy();
+  // });
   // beforeEach(async () => {
   //   // Creamos un mock del servicio ProductosService
   //   mockProductosService = jasmine.createSpyObj('ProductosService', ['list','filter']);//agregar aqui los servicios que se usan en el componente
@@ -160,62 +282,6 @@ describe('InicioComponent', () => {
 
   //   fixture.detectChanges();
   // });
-
-  // it('Debería crear el componente', () => {
-  //   expect(component).toBeTruthy();
-  // });
-
-  it('Debería filtrar los productos por los filtros', () => {
-    // Configura el mock del servicio con productos
-    const estadoProducto='nuevo';
-    const mockProductosService = jasmine.createSpyObj('ProductosService', ['list', 'filter']);
-    mockProductosService.filter.and.returnValue(of(productosNuevosMock)); // Mock de productos usados
-    mockProductosService.list.and.returnValue(of(productosMock)); // Mock de todos los productos
-    // Configura el TestBed
-    TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      declarations: [InicioComponent],
-      providers: [
-        { provide: ProductosService, useValue: mockProductosService }
-      ]
-    }).compileComponents();
-  
-    fixture = TestBed.createComponent(InicioComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges(); // Dispara la detección de cambios para inicializar los elementos
-    
-    // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
-    const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
-    const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
-  
-    // Asignar valores simulados a los inputs
-    inputPrecio.value = '200';  
-    inputExistencia.value = '2';  
-  
-    // Dispara un evento de input para que Angular reconozca el cambio
-    inputPrecio.dispatchEvent(new Event('input'));
-    inputExistencia.dispatchEvent(new Event('input'));
-    
-    // Establecer el estado a "usado"
-    component.estado = 'nuevo'; // Filtrar productos usados
-    
-    // Llamar a la función de filtrado
-    component.enviarFiltro();
-  
-    // Verificar que el servicio filter haya sido llamado con los valores correctos
-    expect(mockProductosService.filter).toHaveBeenCalledWith({
-      valor1: 'nuevo',  // El estado es 'usado'
-      valor2: '200',    // El valor del precio simulado
-      valor3: '2'       // El valor de existencia simulado
-    });
-  
-    // Verificar que los productos devueltos sean los productos usados mockeados
-    expect(component.productos).toEqual(productosNuevosMock);
-  });
-  
-  
-  
-
   // it('Debería obtener la lista de productos del servicio y mostrarlos en la vista', () => {
   //   // Simular la respuesta del servicio con datos mock
   //   mockProductosService.list.and.returnValue(of(productosMock));
@@ -262,4 +328,6 @@ describe('InicioComponent', () => {
 
   //   expect(mockProductosService.list).toHaveBeenCalledTimes(1);
   // });
-});
+
+
+
