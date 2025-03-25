@@ -62,6 +62,43 @@ class ProductosController
             res.json(false);
         }
     }
+
+    public async listByFilters(req: Request, res: Response) : Promise<void> {//filtros por estado, precio, existencia Ya funciona
+        const { valor1,valor2,valor3 } = req.body;//filtros por estado, precio, existencia
+        let var1= valor1=="nuevo" ? 1 : 2;
+        let query = 'SELECT producto_id, producto_descripcion, producto_precio, producto_existencia, producto_estado, carrera_nombre, usuario_nombre, usuario_apellidos FROM productos_usuarios LEFT JOIN usuarios ON id_usuario = usuarios.usuario_id LEFT JOIN productos ON id_producto = productos.producto_id LEFT JOIN carreras ON productos.id_carrera_p = carreras.carrera_id where ';
+        console.log(req.body);
+        if(valor2>0)
+        {
+            query += `producto_precio >= ${valor2} `;
+        }
+        if(valor3>0)
+        {
+            if(valor2>0)
+                {
+                    query += 'AND ';
+                }
+
+            query += `producto_existencia >= ${valor3} `;
+        }
+        if(valor1!="")
+            {
+                if(valor2>0 || valor3>=1)
+                    {
+                        query += 'AND ';
+                    }
+                query += `producto_estado = ${var1} `;
+            }
+
+        console.log(query);
+    try{
+       const respuesta= await pool.query(query);
+       res.json(respuesta);
+    }
+    catch{
+        res.json(false);//No se selecciono ningun filtro
+    }
+}
 }
 
 export const productosController = new ProductosController();
