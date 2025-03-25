@@ -144,3 +144,18 @@ img{
     box-shadow: 0 0px 20px #555;
     border-radius: 25px;
   }
+
+  .carreras {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 25px;
+  }
+
+  .carreas .principal {
+    gap: 5px;
+    margin-left: 40px;
+  }
+
+  .carreas .carreras-list {
+    margin: 0;
+  }

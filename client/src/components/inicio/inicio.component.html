@@ -1,14 +1,15 @@
 <nav class="nav">
     <div class="nav-wrapper carreras">
-      <a href="http://localhost:4200/home/inicio" class="brand-logo center" (click)="mostrarMensaje($event, 'Todas las carreras')">Todas las carreras</a>
-      <div class="carreras-list">
-        <a *ngFor="let carrera of carreras" href="http://localhost:4200/home/inicio" class="brand-logo" (click)="mostrarMensaje($event, carrera.carrera_nombre)">
+        <div class="principal">
+            <a href="http://localhost:4200/home/inicio" class="brand-logo" (click)="seleccionarCarrera($event, 0)">Todas las carreras</a>
+        </div>
+      <div class="carreras-list" *ngFor="let carrera of carreras">
+        <a href="http://localhost:4200/home/inicio" class="brand-logo" (click)="seleccionarCarrera($event, carrera.carrera_id)">
           {{ carrera.carrera_nombre }}
         </a>
       </div>
     </div>
-  </nav>  
-
+  </nav> 
 <div class="row">
     <div class="col s2 card loginContainer">
         <h6>Filtros de búsqueda</h6>
