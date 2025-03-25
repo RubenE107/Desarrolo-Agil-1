@@ -19,44 +19,84 @@ fdescribe('InicioComponent', () => {
   let debugElement: DebugElement;;
   const productosMock: Producto[] = [
     {
-      producto_id: 1,
-      producto_descripcion: "Raspberry Pi Pico W RPW2040",
-      producto_precio: 150,
-      producto_existencia: 2,
-      producto_estado: 1,
-      carrera_nombre: "Computación",
-      usuario_nombre: "Ulises",
-      usuario_apellidos: "Pastor Martínez"
+      "producto_id": 1,
+      "producto_descripcion": "Raspberry Pi Pico W RPW2040",
+      "producto_precio": 150,
+      "producto_existencia": 2,
+      "producto_estado": 1,
+      "carrera_nombre": "Computación",
+      "usuario_nombre": "Ulises",
+      "usuario_apellidos": "Pastor Martínez"
     },
     {
-      producto_id: 2,
-      producto_descripcion: "Multímetro digital Truper VC301",
-      producto_precio: 180,
-      producto_existencia: 1,
-      producto_estado: 2,
-      carrera_nombre: "Electrónica",
-      usuario_nombre: "Ulises",
-      usuario_apellidos: "Pastor Martínez"
+      "producto_id": 2,
+      "producto_descripcion": "Multímetro digital Truper VC301",
+      "producto_precio": 180,
+      "producto_existencia": 1,
+      "producto_estado": 2,
+      "carrera_nombre": "Electrónica",
+      "usuario_nombre": "Ulises",
+      "usuario_apellidos": "Pastor Martínez"
     },
     {
-      producto_id: 3,
-      producto_descripcion: "Portaplanos Ke De 95 Cm Rojo Con Negro",
-      producto_precio: 406,
-      producto_existencia: 1,
-      producto_estado: 2,
-      carrera_nombre: "Diseño",
-      usuario_nombre: "Francisco",
-      usuario_apellidos: "Méndez Quiroz"
+      "producto_id": 3,
+      "producto_descripcion": "Portaplanos Ke De 95 Cm Rojo Con Negro",
+      "producto_precio": 406,
+      "producto_existencia": 1,
+      "producto_estado": 2,
+      "carrera_nombre": "Diseño",
+      "usuario_nombre": "Francisco",
+      "usuario_apellidos": "Méndez Quiroz"
     },
     {
-      producto_id: 4,
-      producto_descripcion: "Juego De 40 Pinceles Profesionales Con Estuche De Almacenami",
-      producto_precio: 900,
-      producto_existencia: 1,
-      producto_estado: 1,
-      carrera_nombre: "Diseño",
-      usuario_nombre: "Hugo",
-      usuario_apellidos: "López Mateos"
+      "producto_id": 4,
+      "producto_descripcion": "Juego De 40 Pinceles Profesionales Con Estuche De Almacenami",
+      "producto_precio": 900,
+      "producto_existencia": 1,
+      "producto_estado": 1,
+      "carrera_nombre": "Diseño",
+      "usuario_nombre": "Hugo",
+      "usuario_apellidos": "López Mateos"
+    },
+    {
+      "producto_id": 5,
+      "producto_descripcion": "Logitech M100 - Mouse USB con Cable, 3 Botones, Seguimiento óptico de 1000 dpi",
+      "producto_precio": 540,
+      "producto_existencia": 1,
+      "producto_estado": 2,
+      "carrera_nombre": "Computación",
+      "usuario_nombre": "Ulises",
+      "usuario_apellidos": "Pastor Martínez"
+    },
+    {
+      "producto_id": 6,
+      "producto_descripcion": "Álgebra de Baldor Original",
+      "producto_precio": 270,
+      "producto_existencia": 1,
+      "producto_estado": 2,
+      "carrera_nombre": "Matemáticas aplicadas",
+      "usuario_nombre": "Gerardo",
+      "usuario_apellidos": "Díaz Rodríguez"
+    },
+    {
+      "producto_id": 7,
+      "producto_descripcion": "Kit de laboratorio de química : Industrial y Científico",
+      "producto_precio": 1900,
+      "producto_existencia": 1,
+      "producto_estado": 2,
+      "carrera_nombre": "Alimentos",
+      "usuario_nombre": "Ana Lucía",
+      "usuario_apellidos": "García Álvarez"
+    },
+    {
+      "producto_id": 8,
+      "producto_descripcion": "Mechero de Bunsen",
+      "producto_precio": 200,
+      "producto_existencia": 2,
+      "producto_estado": 1,
+      "carrera_nombre": "Alimentos",
+      "usuario_nombre": "Ana Lucía",
+      "usuario_apellidos": "García Álvarez"
     }
   ];
   const productosNuevosMock:Producto[]=[
@@ -91,6 +131,29 @@ fdescribe('InicioComponent', () => {
       "usuario_apellidos": "García Álvarez"
     }
   ]
+
+  const productosNuevos2Mock:Producto[]=[
+    {
+      "producto_id": 1,
+      "producto_descripcion": "Raspberry Pi Pico W RPW2040",
+      "producto_precio": 150,
+      "producto_existencia": 2,
+      "producto_estado": 1,
+      "carrera_nombre": "Computación",
+      "usuario_nombre": "Ulises",
+      "usuario_apellidos": "Pastor Martínez"
+    },
+    {
+      "producto_id": 8,
+      "producto_descripcion": "Mechero de Bunsen",
+      "producto_precio": 200,
+      "producto_existencia": 2,
+      "producto_estado": 1,
+      "carrera_nombre": "Alimentos",
+      "usuario_nombre": "Ana Lucía",
+      "usuario_apellidos": "García Álvarez"
+    }
+  ];
 
   const productosUsadosMock:Producto[]=[
     {
@@ -163,49 +226,155 @@ fdescribe('InicioComponent', () => {
     fixture.detectChanges();
   });
 
-//   it('Debería filtrar los productos por los filtros', () => {
-//     // Configura el mock del servicio con productos
-//     const estadoProducto='nuevo';
 
-//     // ProductosService.filter.and.returnValue(of(productosNuevosMock)); // Mock de productos usados
-//     // ProductosService.list.and.returnValue(of(productosMock)); // Mock de todos los productos
-//     spyOn(productosService, 'filter').and.returnValue(of(productosUsadosMock));
-//     component.ngOnInit();
-//     fixture.detectChanges();
-//     // Configura el TestBed
-//     // TestBed.configureTestingModule({
-//     //   imports: [HttpClientModule],
-//     //   declarations: [InicioComponent],
-//     //   providers: [
-//     //     { provide: ProductosService, useValue: mockProductosService }
-//     //   ]
-//     // }).compileComponents();
-  
-//     // fixture = TestBed.createComponent(InicioComponent);
-//     // component = fixture.componentInstance;
-//     // fixture.detectChanges(); // Dispara la detección de cambios para inicializar los elementos
-    
-//     // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
-//     const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
-//     const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
+  it('Debería filtrar los productos nuevos', () => {
+    spyOn(productosService, 'filter').and.returnValue(of(productosNuevosMock));//simular el servicio de productos con los productos nuevos mockeados
+    component.ngOnInit();
+    fixture.detectChanges();
+    // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
+    const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
+    const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
+    inputPrecio.value = '200';  
+    inputExistencia.value = '1';  
+    inputPrecio.dispatchEvent(new Event('input'));
+    inputExistencia.dispatchEvent(new Event('input'));
+    component.estado = 'nuevo'; // Filtrar productos usados
+    component.enviarFiltro();
 
-//     inputPrecio.value = '200';  
-//     inputExistencia.value = '1';  
-//         // Dispara un evento de input para que Angular reconozca el cambio
-//     inputPrecio.dispatchEvent(new Event('input'));
-//     inputExistencia.dispatchEvent(new Event('input'));
+    expect(productosService.filter).toHaveBeenCalledWith({
+      valor1: 'nuevo',  // El estado es 'usado'
+      valor2: '200',    // El valor del precio simulado
+      valor3: '1'       // El valor de existencia simulado
+    });
+    // Verificar que los productos devueltos sean los productos usados mockeados
+expect(component.productos).toEqual(productosNuevosMock);});// Verificar que los productos devueltos sean los productos usados mockeados
 
-//     component.estado = 'nuevo'; // Filtrar productos usados
 
-//     component.enviarFiltro();
+it('Debería filtrar los productos usados', () => {
+  spyOn(productosService, 'filter').and.returnValue(of(productosNuevosMock));//simular el servicio de productos con los productos nuevos mockeados
+  component.ngOnInit();
+  fixture.detectChanges();
+  // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
+  const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
+  const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
+  inputPrecio.value = '200';  
+  inputExistencia.value = '1';  
+  inputPrecio.dispatchEvent(new Event('input'));
+  inputExistencia.dispatchEvent(new Event('input'));
+  component.estado = 'usado'; // Filtrar productos usados
+  component.enviarFiltro();
 
-//     expect(mockProductosService.filter).toHaveBeenCalledWith({
-//       valor1: 'nuevo',  // El estado es 'usado'
-//       valor2: '200',    // El valor del precio simulado
-//       valor3: '2'       // El valor de existencia simulado
-//     });
-//     // Verificar que los productos devueltos sean los productos usados mockeados
-// expect(component.productos).toEqual(productosNuevosMock);});// Verificar que los productos devueltos sean los productos usados mockeados
+  expect(productosService.filter).toHaveBeenCalledWith({
+    valor1: 'usado',  // El estado es 'usado'
+    valor2: '200',    // El valor del precio simulado
+    valor3: '1'       // El valor de existencia simulado
+  });
+  // Verificar que los productos devueltos sean los productos usados mockeados
+
+expect(component.productos).toEqual(productosNuevosMock);});// Verificar que los productos devueltos sean los productos usados mockeado
+it('Debería filtrar los productos nuevos con precio a partir de 200 y con stock>=2', () => {
+
+  spyOn(productosService, 'filter').and.returnValue(of(productosNuevos2Mock));//simular el servicio de productos con los productos nuevos mockeados
+  component.ngOnInit();
+  fixture.detectChanges();
+  // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
+  const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
+  const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
+  inputPrecio.value = '200';  
+  inputExistencia.value = '2';  
+  inputPrecio.dispatchEvent(new Event('input'));
+  inputExistencia.dispatchEvent(new Event('input'));
+  component.estado = 'nuevo'; // Filtrar productos usados
+  component.enviarFiltro();
+
+  expect(productosService.filter).toHaveBeenCalledWith({
+    valor1: 'nuevo',  // El estado es 'usado'
+    valor2: '200',    // El valor del precio simulado
+    valor3: '2'       // El valor de existencia simulado
+  });
+  // Verificar que los productos devueltos sean los productos usados mockeados
+expect(component.productos).toEqual(productosNuevos2Mock);});// Verificar que los productos devueltos sean los productos usados mockeado
+
+
+it('Debería filtrar los productos usados con precio a partir de 200 y con stock>=1', () => {
+
+  spyOn(productosService, 'filter').and.returnValue(of(productosUsadosMock));//simular el servicio de productos con los productos nuevos mockeados
+  component.ngOnInit();
+  fixture.detectChanges();
+  // 🟢 SIMULAR EL VALOR DE LOS INPUTS EN EL HTML
+  const inputPrecio = fixture.nativeElement.querySelector('#quantity'); 
+  const inputExistencia = fixture.nativeElement.querySelector('#quantity1');  
+  inputPrecio.value = '200';  
+  inputExistencia.value = '1';  
+  inputPrecio.dispatchEvent(new Event('input'));
+  inputExistencia.dispatchEvent(new Event('input'));
+  component.estado = 'usado'; // Filtrar productos usados
+  component.enviarFiltro();
+
+  expect(productosService.filter).toHaveBeenCalledWith({
+    valor1: 'usado',  // El estado es 'usado'
+    valor2: '200',    // El valor del precio simulado
+    valor3: '1'       // El valor de existencia simulado
+  });
+  // Verificar que los productos devueltos sean los productos usados mockeados
+expect(component.productos).toEqual(productosUsadosMock);});// Verificar que los productos devueltos sean los productos usados mockeado
+
+it('Limpiar los filtros', () => {
+  // Espiar el servicio y simular la respuesta de productos
+
+  spyOn(productosService, 'list').and.returnValue(of(productosMock));
+
+  // Crear elementos en el DOM simulados
+  const quantityInput = document.createElement('input');
+  quantityInput.id = 'quantity';
+  document.body.appendChild(quantityInput);
+
+  const quantity1Input = document.createElement('input');
+  quantity1Input.id = 'quantity1';
+  document.body.appendChild(quantity1Input);
+
+  const redCheckbox = document.createElement('input');
+  redCheckbox.id = 'redCheckbox';
+  redCheckbox.type = 'checkbox';
+  document.body.appendChild(redCheckbox);
+
+  const redCheckbox1 = document.createElement('input');
+  redCheckbox1.id = 'redCheckbox1';
+  redCheckbox1.type = 'checkbox';
+  document.body.appendChild(redCheckbox1);
+
+  // Asignar valores iniciales a los inputs antes de llamar a la función
+  (document.getElementById('quantity') as HTMLInputElement).value = '5';
+  (document.getElementById('quantity1') as HTMLInputElement).value = '3';
+  (document.getElementById('redCheckbox') as HTMLInputElement).checked = true;
+  (document.getElementById('redCheckbox1') as HTMLInputElement).checked = true;
+
+  // Llamar a la función
+  component.limpiarFiltros();
+  fixture.detectChanges();
+
+  // Verificar que los valores se restablecieron correctamente
+  expect(component.estado).toBe('');
+  expect((document.getElementById('quantity') as HTMLInputElement).value).toBe('0');
+  expect((document.getElementById('quantity1') as HTMLInputElement).value).toBe('0');
+  expect((document.getElementById('redCheckbox') as HTMLInputElement).checked).toBeFalse();
+  expect((document.getElementById('redCheckbox1') as HTMLInputElement).checked).toBeFalse();
+
+  // Verificar que se llamó al servicio `list()`
+  expect(productosService.list).toHaveBeenCalled();
+
+  // Verificar que `this.productos` se actualizó correctamente
+  expect(component.productos).toEqual(productosMock);
+
+  // Eliminar los elementos simulados después de la prueba
+  document.body.removeChild(quantityInput);
+  document.body.removeChild(quantity1Input);
+  document.body.removeChild(redCheckbox);
+  document.body.removeChild(redCheckbox1);
+});
+
+
+
 
 
   it('should display carreras in <a> tags', () => {
