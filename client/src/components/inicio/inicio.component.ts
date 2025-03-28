@@ -93,12 +93,11 @@ export class InicioComponent implements OnInit {
 
     this.productosService.filter(valores).subscribe((resProductos: any) =>
     {
-      console.log(resProductos);
       if(resProductos.length == 0){
         //Mostar modal de que no hay productos
 
         console.log("No hay productos.");
-        this
+      
         this.mostrarModal = true;
           
         this.productosService.list().subscribe((resProductos: any) =>
@@ -109,7 +108,6 @@ export class InicioComponent implements OnInit {
       }
       else{
         this.productos = resProductos;
-        console.log(this.productos);
       }
     });
 
