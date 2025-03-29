@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from 'src/components/home/home.component';
-import { NavigationComponent } from 'src/components/navigation/navigation.component';
-import { FooterComponent } from 'src/components/footer/footer.component';
-import { LoginComponent } from 'src/components/login/login.component';
-import { InicioComponent } from 'src/components/inicio/inicio.component';
-import { VentaComponent } from 'src/components/venta/venta.component';
+import { HomeComponent } from 'src/app/components/home/home.component';
+import { NavigationComponent } from 'src/app/components/navigation/navigation.component';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { LoginComponent } from 'src/app/components/login/login.component';
+import { InicioComponent } from 'src/app/components/inicio/inicio.component';
+import { VentaComponent } from 'src/app/components/venta/venta.component';
 const routes: Routes = [
   {
     path : "",

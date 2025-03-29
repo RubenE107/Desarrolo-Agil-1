@@ -6,7 +6,7 @@ import { CarrerasService } from 'src/services/carreras.service';
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { Producto } from 'src/models/productoModel';
+import { Producto } from 'src/app/models/productoModel';
 import { HttpClientModule } from '@angular/common/http';
 
 fdescribe('InicioComponent', () => {

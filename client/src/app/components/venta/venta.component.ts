@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Carrera } from 'src/models/carreraModel';
-import { Producto } from 'src/models/productoModel';
-import { CarrerasService } from 'src/services/carreras.service';
-import { ProductosService } from 'src/services/productos.service';
+import { Carrera } from 'src/app/models/carreraModel';
+import { Producto } from 'src/app/models/productoModel';
+import { CarrerasService } from '../../services/carreras.service';
+import { ProductosService } from '../../services/productos.service';
 import { environment } from 'src/environments/environment';
-import { ImagenesService } from 'src/services/imagenes.service';
+import { ImagenesService } from '../../services/imagenes.service';
 import Swal from 'sweetalert2';
 
 
