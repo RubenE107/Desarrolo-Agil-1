@@ -26,15 +26,27 @@ class ProductosController
             res.json(false);
         }
     }
-
-    public async create(req: Request, res: Response) : Promise<void> {
-        try{
-            const resp = await pool.query("INSERT INTO productos set ?", [req.body]);
-            res.json(resp);
-        }
-        catch(error)
-        {
-            res.json(error);
+    public async create(req: Request, res: Response): Promise<void> {
+        try {
+            const { producto_descripcion, producto_precio, producto_existencia, producto_estado, id_carrera_p } = req.body;
+            // Primera consulta para insertar en la tabla productos
+            const result = await pool.query(`
+                INSERT INTO productos (producto_descripcion, producto_precio, producto_existencia, producto_estado, id_carrera_p)
+                VALUES (?, ?, ?, ?, ?);
+            `, [producto_descripcion, producto_precio, producto_existencia, producto_estado, id_carrera_p]);
+    
+            // Obtener el ID del producto insertado
+            const productoId = result.insertId;
+    
+            // Segunda consulta para insertar en la tabla productos_usuarios
+            await pool.query(`
+                INSERT INTO productos_usuarios (id_usuario, id_producto)
+                VALUES (1, ?);
+            `, [productoId]);
+    
+            res.json({ message: "Producto creado exitosamente", productoId: productoId });
+        } catch (error) {
+            res.status(500).json({ message: "Error en el servidor", error });
         }
     }
 

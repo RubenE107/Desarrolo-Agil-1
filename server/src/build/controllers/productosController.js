@@ -40,11 +40,23 @@ class ProductosController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const resp = yield database_1.default.query("INSERT INTO productos set ?", [req.body]);
-                res.json(resp);
+                const { producto_descripcion, producto_precio, producto_existencia, producto_estado, id_carrera_p } = req.body;
+                // Primera consulta para insertar en la tabla productos
+                const result = yield database_1.default.query(`
+                INSERT INTO productos (producto_descripcion, producto_precio, producto_existencia, producto_estado, id_carrera_p)
+                VALUES (?, ?, ?, ?, ?);
+            `, [producto_descripcion, producto_precio, producto_existencia, producto_estado, id_carrera_p]);
+                // Obtener el ID del producto insertado
+                const productoId = result.insertId;
+                // Segunda consulta para insertar en la tabla productos_usuarios
+                yield database_1.default.query(`
+                INSERT INTO productos_usuarios (id_usuario, id_producto)
+                VALUES (1, ?);
+            `, [productoId]);
+                res.json({ message: "Producto creado exitosamente", productoId: productoId });
             }
             catch (error) {
-                res.json(error);
+                res.status(500).json({ message: "Error en el servidor", error });
             }
         });
     }

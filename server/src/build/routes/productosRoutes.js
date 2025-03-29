@@ -15,6 +15,7 @@ class ProductosRoutes {
         this.router.delete('/eliminar/:id', productosController_1.productosController.delete);
         this.router.get('/carrera/:carrera_id', productosController_1.productosController.listByCareer);
         this.router.post('/filtrar', productosController_1.productosController.listByFilters);
+        this.router.post('/create', productosController_1.productosController.create);
     }
 }
 const productosRoutes = new ProductosRoutes();
