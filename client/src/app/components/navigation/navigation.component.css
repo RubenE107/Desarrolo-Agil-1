@@ -3,7 +3,7 @@
 .imagen-nav {
     position: relative;
     height: 200px;
-    background: url('../../assets/images/home.jpg') no-repeat center center;
+    background: url('../../../assets/images/home.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
     align-items: center;
