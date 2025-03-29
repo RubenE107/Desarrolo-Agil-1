@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="login-box">
+    <span class="header">¡REALIZA TU VENTA!</span>
+    <label for="file" class="custum-file-upload">
+      <div class="icon">
+        <img [src]="url" *ngIf="url" height="300" width="700" alt="Foto de Producto"> <br>
+      </div>
+      <div class="text">
+        <span>Click para cargar una imagen</span>
+      </div>
+      <input id="file" type="file" #imageInput (change)="cargandoImagen($event.target)" multiple>
+    </label>
+
+    <form class="form">
+      <div class="input-field">
+        <input type="text" [(ngModel)]="producto.producto_descripcion" id="descripcion" name="descripcion" required class="input-full">
+        <label for="descripcion">Descripción del Producto</label>
+      </div>
+      <div class="input-field">
+        <input type="number" [(ngModel)]="producto.producto_precio" id="precio" name="precio" required class="input-full">
+        <label for="precio">Precio</label>
+      </div>
+      <div class="input-field">
+        <input type="number" [(ngModel)]="producto.producto_existencia" id="cantidad" name="cantidad" required class="input-full">
+        <label for="cantidad">Cantidad de Existencia</label>
+      </div>
+      <div class="input-field" (change)="onSubmit($event)">
+        <span>Selecciona el estado del producto</span>
+        <select class="browser-default">
+          <option value="1">Nuevo</option>
+          <option value="2">Usado</option>
+        </select>
+      </div>
+      <div class="input-field">
+        <span>Selecciona la Carrera</span>
+        <select class="browser-default" (change)="onCarrera($event)">
+          <option *ngFor="let carrera of carreras; let i = index" [value]="i + 1">
+            {{ carrera.carrera_nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="button-container">
+        <button type="button" class="button cancel" (click)="irAHome()">Cancelar Venta</button>
+        <button type="submit" class="button create" (click)="NuevoProducto()" >Crear Venta</button>
+      </div>
+    </form>
+  </div>
+</div>

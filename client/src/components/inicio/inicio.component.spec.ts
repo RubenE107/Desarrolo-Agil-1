@@ -497,6 +497,3 @@ it('Limpiar los filtros', () => {
 
   //   expect(mockProductosService.list).toHaveBeenCalledTimes(1);
   // });
-
-
-

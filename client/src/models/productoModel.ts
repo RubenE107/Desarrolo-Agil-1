@@ -7,6 +7,8 @@ export class Producto{
     carrera_nombre: string;
     usuario_nombre: string;
     usuario_apellidos: string;
+    id_carrera_p: number;
+    usuario_id: number;
 
     constructor() {
         this.producto_id = 1;
@@ -17,5 +19,7 @@ export class Producto{
         this.carrera_nombre = '';
         this.usuario_nombre = '';
         this.usuario_apellidos = '';
+        this.id_carrera_p = 1;
+        this.usuario_id = 1;
     }
 }

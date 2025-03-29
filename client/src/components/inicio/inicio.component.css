@@ -45,7 +45,7 @@
 img{
     display: block;
     width: 100%;
-    height: auto;
+    height: 350px;
 }
 
 .card-item{
@@ -156,7 +156,7 @@ img{
   .carreras {
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 25px;
+    font-size: 25px;
   }
 
   .carreas .principal {

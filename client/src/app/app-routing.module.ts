@@ -5,7 +5,7 @@ import { NavigationComponent } from 'src/components/navigation/navigation.compon
 import { FooterComponent } from 'src/components/footer/footer.component';
 import { LoginComponent } from 'src/components/login/login.component';
 import { InicioComponent } from 'src/components/inicio/inicio.component';
-
+import { VentaComponent } from 'src/components/venta/venta.component';
 const routes: Routes = [
   {
     path : "",
@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path : "inicio",
         component : InicioComponent
+      },
+      {
+        path : "ventas",
+        component : VentaComponent
       }
     ]
   },

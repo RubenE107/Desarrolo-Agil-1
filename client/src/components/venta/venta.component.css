@@ -1,0 +1,238 @@
+.container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  --form-width: 840px;
+  --aspect-ratio: 1.33;
+  --login-box-color: #272727;
+  --input-color: #3a3a3a;
+  --button-color: #373737;
+  --footer-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--login-box-color);
+  border-radius: 24px;
+  width: calc(var(--form-width) + 1px);
+  height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+  z-index: 8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 8px rgba(255, 255, 255, 0.1), 0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.container::before {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  content: "";
+  position: absolute;
+  inset: -50px;
+  z-index: -2;
+  background: conic-gradient(from 45deg, transparent 75%, #fff, transparent 100%);
+  animation: spin 4s ease-in-out infinite;
+}
+
+@keyframes spin {
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.login-box {
+  background: var(--login-box-color);
+  border-radius: 24px;
+  padding: 28px;
+  width: var(--form-width);
+  height: calc(var(--form-width) * var(--aspect-ratio));
+  position: absolute;
+  z-index: 10;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: inset 0 40px 60px -8px rgba(255, 255, 255, 0.12), inset 4px 0 12px -6px rgba(255, 255, 255, 0.12), inset 0 0 12px -4px rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+}
+
+.form {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+  width: 100%; 
+  margin-top: 35px;
+}
+
+.input-field {
+  position: relative;
+  width: 100%; 
+}
+
+.input-field input {
+  width: calc(100% - 20px); 
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  background: var(--input-color);
+  color: white;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-field input:focus {
+  border: 1px solid #fff;
+}
+
+.input-field label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: var(--footer-color);
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-field input:focus + label,
+.input-field input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 18px;
+  color: #fff;
+}
+.input-field .input-full {
+  font-size: 18px; 
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 6px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.footer {
+  width: 100%;
+  text-align: left;
+  color: var(--footer-color);
+  font-size: 12px;
+}
+
+.custum-file-upload {
+  height: 370px;
+  display: flex;
+  flex-direction: column; /* Cambiado a columna para apilar elementos */
+  gap: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #e8e8e8;
+  background-color: #212121;
+  padding: 1.5rem;
+  border-radius: 30px;
+  width: 100%; /* Asegura que el contenedor de carga de archivos ocupe todo el ancho */
+}
+
+.custum-file-upload .icon svg {
+  height: 80px;
+  fill: #e8e8e8;
+}
+
+.custum-file-upload input {
+  display: none;
+}
+
+
+.button {
+  --black: #000000;
+  --ch-black: #141414;
+  --eer-black: #1b1b1b;
+  --night-rider: #2e2e2e;
+  --white: #ffffff;
+  --af-white: #f3f3f3;
+  --ch-white: #e1e1e1;
+  border-radius: 8px;
+  width: 140px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0px 15px;
+  border: none;
+  color: white;
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+  transition-duration: .2s;
+  background-color: var(--ch-black);
+}
+
+.button:before, .button:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  border-radius: 10px;
+  background: linear-gradient(45deg, 
+  var(--ch-black), var(--eer-black),
+  var(--night-rider), var(--ch-white), var(--night-rider), 
+	var(--eer-black), var(--ch-black),var(--ch-black));
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button:after {
+  filter: blur(50px);
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.button {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.input-field select {
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: white;
+}
+.input-field span{
+  font-size: 17px;
+  color: white;
+  padding: 5px;
+}

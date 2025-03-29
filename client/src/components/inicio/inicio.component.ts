@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/models/productoModel';
 import { ProductosService } from 'src/services/productos.service';
 import { CarrerasService } from 'src/services/carreras.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-inicio',
@@ -15,10 +16,20 @@ export class InicioComponent implements OnInit {
   productos : Producto[] = [];
   carreras : any[] = [];
   mostrarModal: boolean = false;
+
+  liga = '';
+  imgUsuario: any;
+  fileToUpload: any;
+  blob: any;
+
   constructor(
     private productosService : ProductosService,
     private carrerasService: CarrerasService
-  ) {}
+  ) {
+    this.imgUsuario = null;
+    this.fileToUpload = null;
+    this.liga = environment.API_URI_IMAGENES;
+  }
 
   ngOnInit(): void {
     this.productosService.list().subscribe((resProductos: any) =>
