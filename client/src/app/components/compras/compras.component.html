@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<body>
+    <div class="container">
+        <h1>PRODUCTO EN COMPRA</h1>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <div id="items-list">
+                    <!-- Los productos se agregarán aquí dinámicamente -->
+                </div>
+                
+                <div class="add-item-form">
+                    <div class="form-group">
+                        <label for="product-title">Nombre del Producto</label>
+                        {{producto.description}}
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Precio Unitario</label>
+                        {{producto.unit_price}}
+                    </div>
+                    <div class="form-group">
+                        <label for="product-quantity">Cantidad</label>
+                        <input (change)="updateTotals()" type="number" id="product-quantity" class="form-control" value=1 min=1 max={{producto.available_quantity}} [(ngModel)]="compra.cantidad" name="cantidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Descripción (Opcional)</label>
+                        {{producto.description}}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <h3 class="summary-title">Resumen de Compra</h3>
+                <!-- <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0</span>
+                </div> -->
+                <!-- <div class="summary-row">
+                    <span>Envío</span>
+                    <span>$0</span>
+                </div> -->
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <span>{{compra.total}}</span>
+                </div>
+                <button class="checkout-btn mercado-pago-button" 
+                (click)="checkout()"
+                [disabled]="isLoading">
+                <span *ngIf="!isLoading">Pagar con Mercado Pago</span>
+                <span *ngIf="isLoading">Procesando...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
