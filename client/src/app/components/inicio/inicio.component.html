@@ -61,7 +61,7 @@
                 <h2>
                     Vendedor: <a class="a2" href="http://localhost:4200/home/inicio">{{producto.usuario_nombre}}</a>
                 </h2>
-                <button class="button" >Comprar</button>
+                <button class="button" (click)="comprar(producto.producto_id)" >Comprar</button>
             </div>
         </div>
     </div>
