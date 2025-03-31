@@ -6,6 +6,7 @@ import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { InicioComponent } from 'src/app/components/inicio/inicio.component';
 import { VentaComponent } from 'src/app/components/venta/venta.component';
+import { ComprasComponent } from 'src/app/components/compras/compras.component';
 const routes: Routes = [
   {
     path : "",
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path : "ventas",
         component : VentaComponent
+      },
+      {
+        path : "comprar/:id",
+        component : ComprasComponent
       }
     ]
   },
@@ -37,6 +42,11 @@ const routes: Routes = [
   {
     path : "footer",
     component : FooterComponent
+  },
+  {
+    path: "**",
+    redirectTo: "/home/inicio",
+    pathMatch: "full"
   }
 ];
 
