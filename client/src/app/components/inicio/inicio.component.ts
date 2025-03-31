@@ -3,6 +3,7 @@ import { Producto } from 'src/app/models/productoModel';
 import { ProductosService } from '../../services/productos.service';
 import { CarrerasService } from '../../services/carreras.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -23,6 +24,7 @@ export class InicioComponent implements OnInit {
   blob: any;
 
   constructor(
+    private router: Router,
     private productosService : ProductosService,
     private carrerasService: CarrerasService
   ) {
@@ -167,4 +169,8 @@ export class InicioComponent implements OnInit {
   cerrarModal() {
     this.mostrarModal = false;
   }
+  comprar(id_producto:number ): void {
+    this.router.navigate(['/home/comprar', id_producto]); 
+  }
+
 }
