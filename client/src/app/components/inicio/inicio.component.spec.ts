@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { InicioComponent } from './inicio.component';
-import { ProductosService } from 'src/services/productos.service';
-import { CarrerasService } from 'src/services/carreras.service';
+import { ProductosService } from '../../services/productos.service';
+import { CarrerasService } from '../../services/carreras.service';
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Producto } from 'src/app/models/productoModel';
 import { HttpClientModule } from '@angular/common/http';
-
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 fdescribe('InicioComponent', () => {
   let component: InicioComponent;
   let fixture: ComponentFixture<InicioComponent>;
@@ -211,8 +212,8 @@ fdescribe('InicioComponent', () => {
   beforeEach(async () => {
    await TestBed.configureTestingModule({
      declarations: [ InicioComponent ],
-     imports: [ HttpClientTestingModule, HttpClientModule ],
-     providers: [ ProductosService, CarrerasService,]
+     imports: [ HttpClientTestingModule, HttpClientModule, RouterTestingModule ],
+     providers: [ ProductosService, CarrerasService,{ provide: Router, useValue: jasmine.createSpyObj('Router', ['navigate'])}]
    })
    .compileComponents();
    });
